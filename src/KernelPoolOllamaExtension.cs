@@ -1,7 +1,6 @@
 ﻿using Microsoft.SemanticKernel;
 using Soenneker.Dtos.HttpClientOptions;
 using Soenneker.Extensions.ValueTask;
-using Soenneker.SemanticKernel.Cache.Abstract;
 using Soenneker.SemanticKernel.Dtos.Options;
 using Soenneker.Utils.HttpClientCache.Abstract;
 using System;
@@ -64,14 +63,11 @@ public static class KernelPoolOllamaExtension
     /// <param name="pool">The kernel pool manager to unregister the model from.</param>
     /// <param name="key">The unique identifier used during registration.</param>
     /// <param name="httpClientCache">The HTTP client cache to remove the associated client from.</param>
-    /// <param name="kernelCache">The kernel cache to remove the associated kernel instance from.</param>
     /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
     /// <returns>A <see cref="ValueTask"/> representing the asynchronous unregistration operation.</returns>
-    public static async ValueTask UnregisterOllama(this KernelPoolManager pool, string key, IHttpClientCache httpClientCache, ISemanticKernelCache kernelCache,
-        CancellationToken cancellationToken = default)
+    public static async ValueTask UnregisterOllama(this KernelPoolManager pool, string key, IHttpClientCache httpClientCache, CancellationToken cancellationToken = default)
     {
         await pool.Unregister(key, cancellationToken).NoSync();
         await httpClientCache.Remove($"ollama:{key}", cancellationToken).NoSync();
-        await kernelCache.Remove(key, cancellationToken).NoSync();
     }
 }
