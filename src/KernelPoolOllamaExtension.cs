@@ -17,11 +17,21 @@ namespace Soenneker.SemanticKernel.Pool.Ollama;
 public static class KernelPoolOllamaExtension
 {
     /// <summary>
-    /// Registers an Ollama model with the kernel pool.
+    /// Registers an Ollama model in the kernel pool with optional rate and token limits.
     /// </summary>
-    public static async ValueTask RegisterOllama(this KernelPoolManager pool, string key, string modelId, string endpoint, IHttpClientCache httpClientCache,
-        int? rps, int? rpm, int? rpd, int? tokensPerDay = null, int? maxTokens = null, double? temperature = null,
-        CancellationToken cancellationToken = default)
+    /// <param name="pool">The kernel pool manager to register the model with.</param>
+    /// <param name="key">A unique identifier used to register and later reference the model.</param>
+    /// <param name="modelId">The Ollama model ID to be used for chat completion.</param>
+    /// <param name="endpoint">The base URI endpoint for the Ollama service.</param>
+    /// <param name="httpClientCache">An HTTP client cache used to manage reusable <see cref="HttpClient"/> instances.</param>
+    /// <param name="rps">Optional maximum number of requests allowed per second.</param>
+    /// <param name="rpm">Optional maximum number of requests allowed per minute.</param>
+    /// <param name="rpd">Optional maximum number of requests allowed per day.</param>
+    /// <param name="tokensPerDay">Optional maximum number of tokens allowed per day.</param>
+    /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
+    /// <returns>A <see cref="ValueTask"/> representing the asynchronous registration operation.</returns>
+    public static ValueTask RegisterOllama(this KernelPoolManager pool, string key, string modelId, string endpoint, IHttpClientCache httpClientCache, int? rps,
+        int? rpm, int? rpd, int? tokensPerDay = null, CancellationToken cancellationToken = default)
     {
         var options = new SemanticKernelOptions
         {
@@ -31,8 +41,6 @@ public static class KernelPoolOllamaExtension
             RequestsPerMinute = rpm,
             RequestsPerDay = rpd,
             TokensPerDay = tokensPerDay,
-            MaxTokens = maxTokens,
-            Temperature = temperature,
             KernelFactory = async (opts, _) =>
             {
                 HttpClient httpClient = await httpClientCache.Get($"ollama:{modelId}", () => new HttpClientOptions
@@ -47,18 +55,23 @@ public static class KernelPoolOllamaExtension
             }
         };
 
-        var rateLimiter = new KernelRateLimiter(rps, rpm, rpd);
-
-        var entry = new KernelPoolEntry {Key = key, Options = options, RateLimiter = rateLimiter};
-
-        await pool.Register(key, entry, cancellationToken).NoSync();
+        return pool.Register(key, options, cancellationToken);
     }
 
+    /// <summary>
+    /// Unregisters an Ollama model from the kernel pool and removes associated HTTP client and kernel cache entries.
+    /// </summary>
+    /// <param name="pool">The kernel pool manager to unregister the model from.</param>
+    /// <param name="key">The unique identifier used during registration.</param>
+    /// <param name="httpClientCache">The HTTP client cache to remove the associated client from.</param>
+    /// <param name="kernelCache">The kernel cache to remove the associated kernel instance from.</param>
+    /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
+    /// <returns>A <see cref="ValueTask"/> representing the asynchronous unregistration operation.</returns>
     public static async ValueTask UnregisterOllama(this KernelPoolManager pool, string key, IHttpClientCache httpClientCache, ISemanticKernelCache kernelCache,
         CancellationToken cancellationToken = default)
     {
-        await pool.Unregister(key, cancellationToken);
-        await httpClientCache.Remove($"ollama:{key}").NoSync();
-        await kernelCache.Remove(key).NoSync();
+        await pool.Unregister(key, cancellationToken).NoSync();
+        await httpClientCache.Remove($"ollama:{key}", cancellationToken).NoSync();
+        await kernelCache.Remove(key, cancellationToken).NoSync();
     }
 }
